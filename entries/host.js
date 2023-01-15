@@ -1,1 +1,1 @@
-import '../js/host-initialization';
+import '../js/vue-mounting';
