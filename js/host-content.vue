@@ -1,6 +1,6 @@
-<script setup>
-  import { defineAsyncComponent} from "vue";
-  const child = defineAsyncComponent(() => import(/* webpackIgnore: true */ 'http://localhost:8000/build/child.js'))
+<script setup async>
+  let child = await import(/* webpackIgnore: true */ 'http://localhost:8000/build/child.js');
+  child = child.default;
 </script>
 
 <template>

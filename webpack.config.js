@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
     mode: 'development',
@@ -10,6 +11,7 @@ module.exports = {
     },
     experiments: {
         outputModule: true,
+        topLevelAwait: true,
     },
     output : {
         path: path.resolve(__dirname, 'public', 'build'),
@@ -27,11 +29,19 @@ module.exports = {
             }
         ]
     },
+    devtool: 'source-map',
     plugins: [
         new VueLoaderPlugin(),
         new webpack.DefinePlugin({
             '__VUE_OPTIONS_API__': true,
             '__VUE_PROD_DEVTOOLS__': false,
+        }),
+        new ModuleFederationPlugin({
+            shared: {
+                vue: {
+                    singleton: true
+                }
+            }
         }),
     ]
 }

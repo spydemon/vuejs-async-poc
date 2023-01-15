@@ -1,3 +1,3 @@
-import ChildComponent from '../js/child.vue';
+const ChildComponent = await import('../js/child.vue');
 
-export default ChildComponent;
+export default ChildComponent.default;
